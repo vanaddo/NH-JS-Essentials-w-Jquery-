@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>Ajax Using jQuery Demo</h1>
+
+<!-- GRAB DIFFERENT BITS OF INFO FROM THE CURRENT API OR ADD BUTTONS THAT WILL GET YOU SPECFIC INFO WHEN YOU BRING IN DIFF OBJECT INFO -->
+    <div>
+        <label for="id-text">Id</label>
+        <input id="id-text" /> <button id='lookup-button'>Lookup</button><br />
+        <span id="id-message"></span>
+    </div>
+
+
+    <div id="results"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">        </script>
+
+    <script>
+        "use strict";
+
+        var ui = {
+            "idText": document.getElementById("id-text"),
+            "lookupButton": document.getElementById("lookup-button"),
+            "idMessage": document.getElementById("id-message"),
+            "results": document.getElementById("results")
+        };
+
+
+        function displayPerson(person) {
+            var personUi = "Height: " + person.height + "<br/>";
+            personUi += "Mass: " + person.mass + "<br/>";
+            personUi += "Birth year: " + person.birth_year + "<br/>";
+            personUi += "Eye Color: " + person.eye_color + "<br/>";
+            personUi += "Gender: " + person.gender + "<br/>";
+            personUi += "Name: <strong>" + person.name + "</strong><br/>";
+            ui.results.innerHTML = personUi;
+        }
+
+        function lookupPerson(id) {
+
+            var url = "https://swapi.co/api/people/" + id;
+            var promise = $.getJSON(url);
+            
+            promise.done(function (person) {
+                displayPerson(person);
+            });
+
+            promise.fail(function () {
+                ui.results.innerHTML = "There was a problem loading this person"
+            });
+
+        }
+
+        function lookup_click() {
+            ui.idMessage.innerHTML = "";
+            var id = ui.idText.value;
+            if (!id) {
+                ui.idMessage.innerHTML = "You must enter a positive number for Id";
+                return;
+            }
+
+            lookupPerson(id)
+
+        }
+
+        ui.lookupButton.addEventListener("click", lookup_click);
+
+    </script>
+
+
+
+
+</body>
+
+</html>
