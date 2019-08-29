@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<script>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        "use strict";
+
+        function add(n1, n2){
+
+            var answer = n1 + n2;
+
+           for(var i = 2; i < arguments.length; i++){
+               answer += arguments[i];
+           }
+           return answer;
+        }
+
+        //Invoke, call, execute, run the function
+
+        var sum = add(10,11);
+        console.log("sum", sum);
+
+        //Function Statement
+        function subtract(n1,n2){
+            var answer = n1 - n2;
+            return answer;
+
+        }
+
+        //Function Expression
+        var multiply = function(n1,n2){
+            var answer = n1 * n2;
+            return answer;
+        };
+
+        var product = multiply(10,5);
+        var difference = subtract(10,5);
+
+        function LightlyAnnoyTheUser(){
+            alert("Hi user! What are you doing?");
+        }
+
+        setInterval(LightlyAnnoyTheUser, 5000);
+        
+    </script>
+</body>
+</html>

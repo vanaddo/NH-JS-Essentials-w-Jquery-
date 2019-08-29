@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        h2 {
+            cursor: pointer;
+        }
+
+        .panel {
+
+            font-size: 1.2em;
+            margin-left: 2em;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <h1>Music</h1>
+
+    <h2 data-related="classical">Change</h2>
+    <div id="classical" class="panel">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus quis, ullam obcaecati laborum facilis
+        quibusdam odio iure quae consequuntur ex nobis perferendis voluptates nihil quo adipisci neque aliquam
+        asperiores qui, temporibus impedit quia voluptatibus sit maxime tenetur. Quo consequuntur deserunt nesciunt
+        inventore possimus aliquid veniam hic, ea tempora beatae provident molestias odit esse blanditiis vero
+        temporibus, minus totam! Quo mollitia pariatur commodi cum illo dolorem nam earum nemo delectus eveniet facere
+        totam deleniti sequi, impedit voluptas omnis sint facilis saepe vel accusantium! Eaque animi, dolores assumenda
+        totam molestiae, tenetur at quia corrupti blanditiis et necessitatibus consectetur ex expedita ducimus magnam.
+    </div>
+    <h2 data-related="hiphop">Hip-Hop</h2>
+    <div id="hiphop" class="panel">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia ipsa excepturi veniam fugit asperiores odio
+        deserunt iusto aperiam laudantium, quidem neque numquam similique vitae optio repudiandae est vel. Ad laudantium
+        nobis perspiciatis vero voluptates illo, nisi quia excepturi mollitia hic eius quisquam quas cum, dicta omnis
+        aperiam, labore necessitatibus molestias ea maxime. Sequi natus eos nemo provident repudiandae odio minus.
+        Eligendi quod sed, iusto unde quis voluptatibus asperiores quasi nostrum ipsam repudiandae rem aliquid quibusdam
+        a quas accusamus vero aperiam possimus! Aspernatur, minus similique. Enim, blanditiis eaque! Laudantium
+        distinctio voluptatem repudiandae odio reiciendis qui consectetur.
+    </div>
+    <h2 data-related="musicals">Musicals</h2>
+    <div id="musicals" class="panel">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui debitis quas iusto quos laborum perspiciatis
+        similique labore, optio quaerat omnis esse molestias ipsa quisquam error totam aut ratione harum quasi dolor
+        tempore nulla soluta. Fuga enim vitae hic non mollitia veritatis similique, obcaecati velit repudiandae
+        recusandae soluta adipisci exercitationem qui architecto quo officia dolores aliquid laboriosam accusantium
+        facere! Debitis id doloribus deserunt assumenda autem iste mollitia laborum quia at a porro asperiores, officia
+        beatae nisi voluptate fugit impedit, ducimus ad.
+    </div>
+    <h2 data-related="jazz">Jazz</h2>
+    <div id="jazz" class="panel">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum aliquid sit fuga hic totam officia
+        perferendis. Quidem accusantium est illum repellat unde, eius, nihil rem quibusdam quasi nisi molestias in odit
+        vitae accusamus dicta similique sunt perferendis ipsa sit culpa delectus. Obcaecati, corrupti dolore omnis
+        blanditiis repellendus iusto, quo sed at doloremque laudantium soluta aspernatur sit animi odio nam deserunt
+        consequatur perspiciatis temporibus vero consectetur ipsam laboriosam. A, dignissimos! Neque vitae reprehenderit
+        ipsa fugit laudantium.
+    </div>
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">        </script>
+<script>
+    "use strict"
+
+    $(".panel").hide();
+
+
+    $("h2").click(function () {
+        var related = $(this).data("related");
+        var panelSelector = "#" + related;
+        var $panel = $(panelSelector);
+        if ($panel.is(":visible")) return;
+
+        $(".panel").slideUp();
+        $panel.slideDown();
+
+
+    });
+
+
+
+</script>
+
+</html>

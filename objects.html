@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <h1>Review</h1>
+
+    <label for="todo-text">ToDo</label>
+    <input type="text" name="" id="todo-text">
+    <button id="add-button">Add Todo</button>
+
+
+    <ul id="todo-list">
+
+    </ul>
+
+    <div id="messages"></div>
+
+    <script>
+
+
+        var todos = [];
+
+
+        function addTodo(todo) {
+
+            for (var i = 0; i < arguments.length; i++) {
+                var currentTodo = arguments[i]
+                todos.push(currentTodo);
+            }
+
+
+        }
+
+        function getTodos() {
+            return todos;
+        }
+
+        function displayTodoList(list) {
+            var todoList = document.getElementById("todo-list");
+            todoList.innerHTML = "";
+            for (var i = 0; i < list.length; i++) {
+                var currentTodo = list[i];
+                var li = document.createElement("li");
+                li.textContent = currentTodo;
+                todoList.appendChild(li);
+            }
+
+
+        }
+
+
+        function addButton_click() {
+            var todoText = document.getElementById("todo-text");
+            var newTodo = todoText.value;
+            if (!newTodo) return; //if the user didn't type anything, exit the function
+
+            addTodo(newTodo);
+            var currentList = getTodos();
+            displayTodoList(currentList)
+
+            todoText.value = "";
+            todoText.focus();
+        }
+
+
+        var addButton = document.getElementById("add-button");
+        addButton.addEventListener("click", addButton_click)
+
+
+        //document query methods
+        //document.getElementById("id") //*
+        //document.getElementsByTagName("tag")
+        //document.getElementsByClassName("class")
+        //document.querySelector("css query") //*
+        //document.querySelectorAll("css query") //*
+
+        //Function Statement
+        // function displayMessage(message) {
+        //     var msgDiv = document.getElementById("messages")
+        //     msgDiv.innerHTML = message;
+        // }
+
+
+        //Function Expression
+        var displayMessage = function (message) {
+            var msgDiv = document.getElementById("messages")
+            msgDiv.innerHTML = message;
+        }
+
+
+        displayMessage("Welcome to the todo application.")
+
+
+    </script>
+
+</body>
+
+</html>

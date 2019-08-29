@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQuery Events</title>
+
+    <style>
+        #box-container {
+            margin: 2em;
+            border: 1px solid black;
+            border-radius: 1em;
+            padding: 2em;
+            background-color: mediumaquamarine;
+            max-height: 600px;
+            overflow-y: scroll;
+
+        }
+
+        .box {
+            border: 1px solid white;
+            background-color: yellow;
+            padding: 1em;
+            display: inline-block;
+            margin: 1em;
+            color: black;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="box-container">
+
+
+    </div>
+    <button id="add-button">Add Another</button>
+
+    <label></label>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
+        </script>
+
+    <script>
+        "use strict";
+
+        var $container = $("#box-container");
+
+        //shows box content whne box is hovered over
+        $container.on("mouseenter", ".box", function () {
+                var content = $(this).text();
+                $("label").text(content);
+            });
+
+        for (var boxCount = 1; boxCount <= 100; boxCount++) {
+            $("<div>").addClass("box").text("Box " + boxCount).appendTo($container);
+        }
+
+        function addAnotherDiv() {
+            $("<div>").addClass("box").text("New Box " + boxCount).appendTo($container);
+                boxCount += 1;
+        }
+
+       /*  $("#add-button").click(addAnotherDiv); */ //OPTION A
+        $("#add-button").on("click", addAnotherDiv); //OPTION B
+
+    </script>
+
+</body>
+
+</html>

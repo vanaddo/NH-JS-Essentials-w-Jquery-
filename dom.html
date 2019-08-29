@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dom Example</title>
+
+    <style>
+        #grandparent {
+            height: 200px;
+            background-color: orange;
+            border: 1px solid black;
+
+        }
+
+
+        #parent {
+            height: 150px;
+            margin: auto 25px;
+            background-color: ghostwhite;
+            border: 1px solid black;
+
+        }
+
+        .kid {
+            height: 100px;
+            margin: 25px 25px;
+            background-color: limegreen;
+            border: 1px solid black;
+            display: inline-block;
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+
+
+
+    <h1>Dom Example</h1>
+
+    <label>Enter a Name</label>
+    <input type="text" id="name-text" />
+    <button id="add-button">Add Name</button>
+
+
+    <h2>Current Names</h2>
+    <ul id="name-list">
+        <li>none yet</li>
+    </ul>
+
+
+
+    <hr />
+    <div id="demo2" style="display: none">
+        <menu>
+            <ul>
+                <li><a href="page1.html">page 1</a></li>
+            </ul>
+            <ul>
+                <li><a href="page2.html">page 2</a></li>
+            </ul>
+            <ul>
+                <li><a href="page3.html">page 3</a></li>
+            </ul>
+            <ul>
+                <li><a href="page4.html">page 4</a></li>
+            </ul>
+        </menu>
+
+
+
+        <p>
+            This is a <a href="coolpage.html"> cool page</a>.
+        </p>
+
+        <section id="grandparent" data-name="grandparent">
+            <div id="parent" data-name="parent">
+
+                <div class="kid" data-name="kid1">First</div>
+                <div class="kid" data-name="kid2">second</div>
+                <div class="kid" data-name="kid3">third</div>
+                <div class="kid" data-name="kid4">fourth</div>
+            </div>
+        </section>
+
+        <div class="kid" data-name="kid1">First</div>
+        <div class="kid" data-name="kid2">second</div>
+        <div class="kid" data-name="kid3">third</div>
+        <div class="kid" data-name="kid4">fourth</div>
+    </div>
+    <script>
+        "use strict";
+
+
+
+
+        var names = [];
+
+        var addButton = document.getElementById("add-button");
+        var nameText = document.getElementById("name-text");
+        var nameList = document.querySelector("#name-list");
+
+
+        function displayNames() {
+            nameList.innerHTML = ""; //Clear the content
+            for (var i = 0; i < names.length; i++) {
+                var currentName = names[i];
+                console.log(currentName);
+                var listItem = document.createElement("li");
+                listItem.textContent = currentName;
+                nameList.appendChild(listItem);
+            }
+        }
+
+
+
+        document.querySelector("#add-button").addEventListener("click", function () {
+
+
+        });
+
+
+        //addButton.onclick = addName;
+        addButton.addEventListener("click", function () {
+            var newName = nameText.value;
+            if (newName) {
+                names.push(newName);
+                displayNames();
+            }
+        });
+
+        //Inline function
+        addButton.addEventListener("click", function () {
+
+
+
+        });
+
+
+
+
+        function anounceToTheWorld() {
+
+            alert("EVERYTHING IS AWESOME!!!");
+
+        }
+
+        function anounceToTheWorld2() {
+
+            alert("EVERYTHING IS Cool when you're part of a team.");
+
+        }
+
+
+        function whatsMyName(evt) {
+            evt.stopPropagation(); //Do not bubble
+
+            var who = evt.target;
+            var name = who.attributes["data-name"].value;
+            alert(name + " was clicked")
+        }
+
+
+
+
+        // //1) get the button
+        // // document
+        // var btn = document.getElementById("name-button");
+        // //btn.onclick = anounceToTheWorld;
+        // // W3C - Document Object Model
+        // btn.addEventListener("click", anounceToTheWorld)
+        // btn.addEventListener("click", anounceToTheWorld2)
+
+
+
+        //ready to click on things?
+        var gp = document.getElementById("grandparent")
+        gp.addEventListener("click", whatsMyName, true);
+
+
+        var p = document.getElementById("parent")
+        p.addEventListener("click", whatsMyName);
+
+
+
+        var kids = document.getElementsByClassName("kid")
+
+        var firstMenuLink = document.querySelector("menu a"); //
+        var menuLinks = document.querySelectorAll("menu a");
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

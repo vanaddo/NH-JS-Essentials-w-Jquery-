@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    
+    .box{
+        height: 100px;
+        width: 100px;
+        border: 1px solid black;
+        background-color: royalblue;
+        display: inline-block;
+        margin: 2em;
+        color: white;
+        padding: 2em;
+        font: 1.5em;
+        transform: .5s;
+    }
+    .box.selected{
+        background-color: maroon;
+        transform: translate(2em) scale(1.2)
+    }
+
+    </style>
+</head>
+<body>
+    
+
+    <h1>jQuery Demo</h1>
+
+    <div id ="container">
+        <div class="box">First</div>
+        <div class="box selected">Second</div>
+        <div class="box">Third</div>
+        <div class="box">Fourth</div>
+        <div class="box">Fifth</div>
+        <div class="box">Sixth</div>
+        <div class="box">Seventh</div>
+        <div class="box">Eighth</div>
+    </div>
+
+
+
+    <button id="remove-button">Remove</button>
+    <button id="reset-button">Reset</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- you can also link your local jquery file -->
+
+    <script src="Tools\jquery\jquery-1.12.1.js">
+    </script>
+
+    <!-- This is grabbing it from the Jquery site -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
+        </script> -->
+    
+    <script>
+
+        //$(function(){});
+
+        $(function(){
+
+            // click on a box to select it 
+            jQuery(".box").click(function () {
+                jQuery(this).toggleClass("selected")
+            });
+
+
+            //when the remove button is clicked. Hide the selected elements
+            //looks for the remove button id that's what the # is
+
+
+            /* remove button action */
+            $("#remove-button").click(function(){
+                //find all of the selected items
+                //hide them
+                //remove the selected class
+
+                
+
+                //non jquery
+              /*   var selectedItems = document.querySelectorAll(".selected");
+                for(var i=0; i< selectedItems.length; i++){
+                    var item = selectedItems[i];
+                    item.style.display ="none";
+                    item.classList.remove("selected");
+                }
+ */
+
+                //jQuery
+                $(".selected").fadeOut().hide().removeClass("selected");
+            });
+
+            /* reset button action */
+            $("#reset-button").click(function(){
+                // show all boxes with the class = "box"
+                $(".box").show();
+            });
+        });
+        
+    
+    </script>
+
+</body>
+</html>

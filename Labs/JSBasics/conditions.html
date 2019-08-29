@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+ 
+    var letter = prompt("Please Enter A Lowercase Letter.");
+    var number = prompt("How many letters would you like?");
+    var answer;
+
+    number = parseFloat(number);
+
+    switch(letter.toLocaleLowerCase()){
+        case "a":
+        case "e":
+        case "i":
+        case "o":
+        case "u":
+        case "y":
+                answer = letter + " is a vowel.</br>";
+                break;
+        default:
+            answer= letter + " is a consonant.</br>";
+
+    }
+    document.write(answer);
+    document.write("You like ",number, number != 1 ? " letters." : " letter.");
+
+</script>
+
+</body>
+</html>
+
+
+

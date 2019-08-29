@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+    var age = prompt("How old are you?");
+     document.write("Number is " + age)
+    try{
+        if(age == ""){
+            throw "empty";
+        }
+        if(isNaN(age)) {
+            throw "not a number";
+        }
+        if(age>100) {
+            throw "too high.";
+        }
+        if(age<100) {
+            throw "too low.";
+        }
+    }
+    catch(err) {
+        alert("Input is " + err);
+    }
+    finally {
+        alert("Thanks!");
+    }
+
+</script>
+
+</body>
+</html>
+
+
+

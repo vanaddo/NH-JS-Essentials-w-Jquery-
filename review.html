@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Working To Do List</title>
+
+    <style>
+        #todo-list {
+            font-size: 2em;
+            list-style: none;
+            color: black;
+
+        }
+
+        #todo-list li {
+            cursor: pointer;
+        }
+
+
+        .complete {
+            
+            text-decoration: line-through;
+            text-decoration-color: red;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+
+    <h1>Review</h1>
+
+    <div>
+        <label for="todo-text">ToDo</label>
+        <input type="text" name="" id="todo-text">
+    </div>
+    <div>
+        <label for="todo-date">Due Date</label>
+        <input type="text" name="" id="todo-date">
+    </div>
+
+    <button id="add-button">Add Todo</button>
+
+
+    <ul id="todo-list">
+
+    </ul>
+
+    <div id="messages"></div>
+
+    <script>
+
+
+        var todos = [];
+
+        //Data Interface
+
+        function addTodo(todo) {
+            for (var i = 0; i < arguments.length; i++) {
+                var currentTodo = arguments[i]
+                todos.push(currentTodo);
+            }
+        }
+
+        function getTodos() {
+            return todos;
+        }
+
+        function getTodoById(id) {
+            for (var i = 0; i < todos.length; i++) {
+                var current = todos[i];
+                if (current.id == id) {
+                    return current;
+                }
+            }
+            return null;
+        }
+
+
+        function displayTodoList(list) {
+            var todoList = document.getElementById("todo-list");
+            todoList.innerHTML = "";
+            for (var i = 0; i < list.length; i++) {
+                var currentTodo = list[i];
+                var li = document.createElement("li");
+                li.textContent = currentTodo.task + " - " + currentTodo.dueDate;
+                li.setAttribute("data-id", currentTodo.id);
+                if (currentTodo.isFinished) {
+                    li.classList.add("complete");
+                }
+
+                todoList.appendChild(li);
+            }
+
+
+        }
+
+
+        function addButton_click() {
+            var todoText = document.getElementById("todo-text");
+            var todoDate = document.getElementById("todo-date");
+            var newTask = todoText.value;
+            if (!newTask) return; //if the user didn't type anything, exit the function
+
+            var dueDate;
+
+            if (todoDate.value) {
+                dueDate = new Date(todoDate.value);
+            } else {
+                dueDate = new Date();
+                dueDate.setDate(dueDate.getDate() + 1);
+            }
+
+
+            var todo = new Todo(todoText.value, dueDate);
+
+            addTodo(todo);
+            refreshScreen();
+
+
+            todoText.value = "";
+            todoText.focus();
+        }
+
+        function refreshScreen() {
+            var currentList = getTodos();
+            displayTodoList(currentList)
+        }
+
+
+        function todo_clicked(e) {
+            var current = e.target;
+            var id = current.getAttribute("data-id");
+            var todo = getTodoById(id);
+            todo.complete();
+            refreshScreen();
+        }
+
+
+        var todoList = document.getElementById("todo-list")
+        todoList.addEventListener("click", todo_clicked);
+
+        var addButton = document.getElementById("add-button");
+        addButton.addEventListener("click", addButton_click)
+
+
+        //document query methods
+        //document.getElementById("id") //*
+        //document.getElementsByTagName("tag")
+        //document.getElementsByClassName("class")
+        //document.querySelector("css query") //*
+        //document.querySelectorAll("css query") //*
+
+        //Function Statement
+        // function displayMessage(message) {
+        //     var msgDiv = document.getElementById("messages")
+        //     msgDiv.innerHTML = message;
+        // }
+
+
+        //Function Expression
+        var displayMessage = function (message) {
+            var msgDiv = document.getElementById("messages")
+            msgDiv.innerHTML = message;
+        }
+
+
+        displayMessage("Welcome to the todo application.")
+
+
+        //Constructor function 
+        function Todo(task, dueDate) {
+            //this
+            this.id = Date.now();
+            this.task = task;
+            this.dueDate = dueDate;
+            this.isFinished = false;
+            this.completionDate = null;
+            // return this
+        }
+
+        Todo.prototype.complete = function () {
+            this.isFinished = true;
+            this.completionDate = new Date(); //current date and time
+        };
+
+        //testing
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>
