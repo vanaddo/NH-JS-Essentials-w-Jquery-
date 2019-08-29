@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>Ajax Demo</h1>
+    <div>
+        <label for="id-text">Id</label>
+        <input id="id-text" /> <button id='lookup-button'>Lookup</button><br />
+        <span id="id-message"></span>
+    </div>
+
+
+    <div id="results"></div>
+
+
+    <script>
+        "use strict";
+
+        var ui = {
+            "idText": document.getElementById("id-text"),
+            "lookupButton": document.getElementById("lookup-button"),
+            "idMessage": document.getElementById("id-message"),
+            "results": document.getElementById("results")
+        };
+
+        function displayPerson(person){
+
+            var personUi = "Name: " + person.name + " <br/>";
+            personUi += "Height: " + person.height + " <br/>";
+            personUi += "Mass: " +person.mass + "<br/>"
+            personUi += "Birth year: " +person.birth_year + "<br/>"
+            personUi += "Eye Color: " +person.eye_color + "<br/>"
+            personUi += "Gender: " +person.gender + "<br/>"
+
+
+
+            ui.results.innerHTML = personUi;
+        }
+
+
+        function lookupPerson(id) {
+
+            var request = new XMLHttpRequest();
+            var url = "https://swapi.co/api/people/" + id;
+
+            request.open("get", url);
+            request.send();
+            ui.results.innerHTML = "Request sent";
+
+            request.onload = function () {
+                if (request.status == 404) {
+                    ui.results.innerHTML = "Person not found";
+                } else {
+                    //Talk about json
+                    var responseString = request.responseText;
+
+                    var person = JSON.parse(responseString);
+                    displayPerson(person);
+                }
+            };
+
+        }
+
+
+
+
+        function lookup_click() {
+            ui.idMessage.innerHTML = "";
+            var id = ui.idText.value;
+            if (!id) {
+                ui.idMessage.innerHTML = "You must enter a positive number for Id";
+                return;
+            }
+
+            lookupPerson(id)
+
+        }
+
+
+        ui.lookupButton.addEventListener("click", lookup_click);
+
+    </script>
+
+
+
+
+</body>
+
+</html>
