@@ -5,12 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Vanilla Ajax Lesson</title>
+    <title>Document</title>
 </head>
 
 <body>
 
-    <h1>Ajax Demo</h1>
+    <h1>Ajax Using jQuery Demo</h1>
+
+
     <div>
         <label for="id-text">Id</label>
         <input id="id-text" /> <button id='lookup-button'>Lookup</button><br />
@@ -20,6 +22,8 @@
 
     <div id="results"></div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">        </script>
 
     <script>
         "use strict";
@@ -31,46 +35,31 @@
             "results": document.getElementById("results")
         };
 
-        function displayPerson(person){
 
-            var personUi = "Name: " + person.name + " <br/>";
-            personUi += "Height: " + person.height + " <br/>";
-            personUi += "Mass: " +person.mass + "<br/>"
-            personUi += "Birth year: " +person.birth_year + "<br/>"
-            personUi += "Eye Color: " +person.eye_color + "<br/>"
-            personUi += "Gender: " +person.gender + "<br/>"
-
-
-
+        function displayPerson(person) {
+            var personUi = "Height: " + person.height + "<br/>";
+            personUi += "Mass: " + person.mass + "<br/>";
+            personUi += "Birth year: " + person.birth_year + "<br/>";
+            personUi += "Eye Color: " + person.eye_color + "<br/>";
+            personUi += "Gender: " + person.gender + "<br/>";
+            personUi += "Name: <strong>" + person.name + "</strong><br/>";
             ui.results.innerHTML = personUi;
         }
 
-
         function lookupPerson(id) {
 
-            var request = new XMLHttpRequest();
             var url = "https://swapi.co/api/people/" + id;
+            var promise = $.getJSON(url);
+            
+            promise.done(function (person) {
+                displayPerson(person);
+            });
 
-            request.open("get", url);
-            request.send();
-            ui.results.innerHTML = "Request sent";
-
-            request.onload = function () {
-                if (request.status == 404) {
-                    ui.results.innerHTML = "These are not the droids you are looking for";
-                } else {
-                    //Talk about json
-                    var responseString = request.responseText;
-                    //ui.results.innerHTML = "<pre>" + responseString + "</pre>";
-                    var person = JSON.parse(responseString);
-                    displayPerson(person);
-                }
-            };
+            promise.fail(function () {
+                ui.results.innerHTML = "There was a problem loading this person"
+            });
 
         }
-
-
-
 
         function lookup_click() {
             ui.idMessage.innerHTML = "";
@@ -83,7 +72,6 @@
             lookupPerson(id)
 
         }
-
 
         ui.lookupButton.addEventListener("click", lookup_click);
 
