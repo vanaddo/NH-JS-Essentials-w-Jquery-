@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/css/jquery.dataTables.min.css" />
+</head>
+
+<body>
+
+
+    <h1>Our Pets</h1>
+
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Type</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Cindy</td>
+                <td>14</td>
+                <td>Dog</td>
+                <td>Black Lab</td>
+            </tr>
+            <tr>
+                <td>Lucky</td>
+                <td>1</td>
+                <td>cat</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Benji</td>
+                <td>14</td>
+                <td>Dog</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Sue</td>
+                <td>1</td>
+                <td>Dog</td>
+                <td>mutt</td>
+            </tr>
+            <tr>
+                <td>Sparky</td>
+                <td>20</td>
+                <td>Horse</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Puck</td>
+                <td>12</td>
+                <td>Cat</td>
+                <td>snowshoe siamesed</td>
+            </tr>
+            <tr>
+                <td>Phoebe</td>
+                <td>8</td>
+                <td>cat</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Gilda</td>
+                <td>1</td>
+                <td>fish</td>
+                <td>goldfish</td>
+            </tr>
+        </tbody>
+
+    </table>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/js/jquery.dataTables.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/js/dataTables.dataTables.js"></script>
+    <script>
+
+        $(function () {
+
+            $("table").DataTable();
+
+        });
+
+
+    </script>
+
+</body>
+
+</html>
