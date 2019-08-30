@@ -9,21 +9,44 @@
 </head>
 
 <body>
+
+
     <script>
-        //original multilines are bad
 
-        var multiLine1 =  `this is a
-        multiline string that works`
+        //Original multiline strings are bad
 
-        var multiLine2 = " this is a  \
-        multiline string that works that is broken"
-        
-        //cancatenating strings is hard too
-        var operand1 = 40;
-        var operand2 = 2;
+        var multiLine1 = ` this is a        
+          multiline string that works`
 
-        var message = `[${operand1} + ${operand1}  = ${operand1} +${operand1}]`;
+        // var multiLine2 = " this is a \ 
+        // multiline string that works that is broken"
+
+
+        //contatenating strings is hard too
+        var operand1 = 40
+        var operand2 = 2
+
+        var message = `[${operand1} + ${operand2} = ${operand1 + operand2}]`
+
+
+
+
+
+
+        for (let i = 0; i < 10; i++) {
+            const message = "This is run #" + (i + 1);
+            message += "opps";
+
+            console.log(message);
+        }
+
+
+        console.log(i);
+        console.log(message);
+
     </script>
+
+
 </body>
 
 </html>
