@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Working To Do List</title>
+    <title>Todo List</title>
 
     <style>
         #todo-list {
             font-size: 2em;
             list-style: none;
-            color: black;
+            color: lawngreen;
 
         }
 
@@ -21,9 +21,7 @@
 
 
         .complete {
-            
             text-decoration: line-through;
-            text-decoration-color: red;
         }
     </style>
 
@@ -33,7 +31,7 @@
 <body>
 
 
-    <h1>Review</h1>
+    <h1>Todo List!</h1>
 
     <div>
         <label for="todo-text">ToDo</label>
@@ -57,6 +55,22 @@
 
 
         var todos = [];
+        const localStorageKey = "todos";
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var todoContent = localStorage.getItem(localStorageKey);
+            if (!todoContent) return;
+
+            todos = JSON.parse(todoContent);
+            refreshScreen();
+
+        });
+
+        function saveContent() {
+            var todoContent = JSON.stringify(todos);
+            localStorage.setItem(localStorageKey, todoContent);
+
+        }
 
         //Data Interface
 
@@ -65,6 +79,7 @@
                 var currentTodo = arguments[i]
                 todos.push(currentTodo);
             }
+            saveContent();
         }
 
         function getTodos() {
@@ -138,6 +153,9 @@
             var id = current.getAttribute("data-id");
             var todo = getTodoById(id);
             todo.complete();
+
+            saveContent();
+
             refreshScreen();
         }
 
