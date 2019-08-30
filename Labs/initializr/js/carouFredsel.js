@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
 		//default carousel
 
 		
@@ -6,7 +7,21 @@ $(document).ready(function () {
 		//based on documentation from 
 		//http://docs.dev7studios.com/jquery-plugins/caroufredsel
 		
-	
+		$('#allPets').carouFredSel({
+            items               : 3,
+            direction           : "right", //try up, down or right
+            scroll : {
+                items           : 2,
+                easing          : "elastic",
+                duration        : 500, //ms                         
+                pauseOnHover    : true
+            },
+            circular: true,
+            infinite: false
+            
+            /* more options below */
+            
+        });
         
         /* more options below */
         
